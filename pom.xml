@@ -28,11 +28,26 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
     <scm>
-        <connection>scm:svn:http://svn.java.net/svn/japex~svn/</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/japex~svn/</developerConnection>
-        <url>http://java.net/projects/japex/sources/svn/show</url>
+        <connection>scm:git:git@github.com:seeburger-ag/japex.git</connection>
+        <developerConnection>scm:git:git@github.com:seeburger-ag/japex.git</developerConnection>
+        <url>https://github.com/seeburger-ag/japex</url>
     </scm>
+
+     <!-- SEE: specifying repositories -->
+    <distributionManagement>
+        <repository>
+            <id>release</id>
+            <name>SEE Release Distribution Repository</name>
+            <url>https://repo.seeburger.de/archiva/repository/release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshot</id>
+            <name>SEE Development Snapshot Repository</name>
+            <url>https://repo.seeburger.de/archiva/repository/snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <defaultGoal>install</defaultGoal>
         <pluginManagement>
@@ -110,11 +125,16 @@
                     <artifactId>modello-maven-plugin</artifactId>
                     <version>1.4.1</version>
                 </plugin>
+
+                <!-- SEE: disable GPG signing for releases -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>1.1</version>
-                    <executions>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                    <!-- <executions>
                         <execution>
                             <id>sign-artifacts</id>
                             <phase>deploy</phase>
@@ -122,7 +142,7 @@
                                 <goal>sign</goal>
                             </goals>
                         </execution>
-                    </executions>
+                    </executions> -->
                 </plugin>
             </plugins>
         </pluginManagement>
