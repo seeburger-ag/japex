@@ -60,7 +60,7 @@ class JapexClassLoader extends URLClassLoader {
 	 * @param classPath
 	 */
     public JapexClassLoader(String classPath) {
-        super(new URL[0], null);
+        super(new URL[0]);
         addClassPath(classPath);
     }
     
@@ -71,7 +71,7 @@ class JapexClassLoader extends URLClassLoader {
      * @param classPath
      */
     public JapexClassLoader(URL[] classPath) {
-    	super(classPath, null);
+    	super(classPath);
     }
     
     public Class<?> findClass(String name) throws ClassNotFoundException {
