@@ -50,7 +50,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.5</version>
+                <configuration>
+                    <source>8</source>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
