@@ -32,7 +32,7 @@
     <scm>
         <connection>scm:git:git@github.com:seeburger-ag/japex.git</connection>
         <developerConnection>scm:git:git@github.com:seeburger-ag/japex.git</developerConnection>
-        <url>https://github.com/seeburger-ag/japex</url>
+        <url>scm:git:git@github.com:seeburger-ag/japex.git</url>
     </scm>
 
      <!-- SEE: specifying repositories -->
