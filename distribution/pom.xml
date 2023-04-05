@@ -3,13 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sun.japex</groupId>
     <artifactId>japex-distribution</artifactId>
-    <version>1.2.5-SNAPSHOT</version>
     <name>Japex distribution</name>
     <packaging>jar</packaging>
     <parent>
         <groupId>com.sun.japex</groupId>
         <artifactId>japex-all</artifactId>
-        <version>1.2.5-SNAPSHOT</version>
+        <version>1.2.5.SEE1-SNAPSHOT</version>
     </parent>
     <build>
         <plugins>
