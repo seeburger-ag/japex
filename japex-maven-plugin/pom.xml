@@ -4,7 +4,7 @@
     <parent>
         <artifactId>japex-all</artifactId>
         <groupId>com.sun.japex</groupId>
-        <version>1.2.5.SEE1</version>
+        <version>1.2.5.SEE2-SNAPSHOT</version>
     </parent>
     <artifactId>japex-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>

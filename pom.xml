@@ -4,7 +4,7 @@
     <groupId>com.sun.japex</groupId>
     <artifactId>japex-all</artifactId>
     <packaging>pom</packaging>
-    <version>1.2.5.SEE1</version>
+    <version>1.2.5.SEE2-SNAPSHOT</version>
     <name>Japex</name>
     <description>Japex Micro-benchmark Framework</description>
     <url>http://japex.java.net</url>
