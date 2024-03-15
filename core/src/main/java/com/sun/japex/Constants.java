@@ -43,6 +43,8 @@ import java.util.Properties;
 
 public class Constants {
 
+    public static final String RESULT_UNIT_HEAP = "heap";
+
     // Global input parameters
     public static final String REPORTS_DIRECTORY = "japex.reportsDirectory";
     public static final String CHART_TYPE        = "japex.chartType";       // barchart | scatterchart | linechart
@@ -53,6 +55,14 @@ public class Constants {
     public static final String PLOT_DRIVERS      = "japex.plotDrivers";
     public static final String PLOT_GROUP_SIZE   = "japex.plotGroupSize";   // max group size
     public static final String SINGLE_CLASS_LOADER = "japex.singleClassLoader";
+
+    public static final String REPORT_PEAK_HEAP_USAGE = "japex.reportPeakHeapUsage";
+    public static final String PEAK_HEAP_USAGE_RESET_CONTEXT = "japex.peakHeapUsageResetContext";
+    public static final String PEAK_HEAP_USAGE_PER_DRIVER = "driver";
+    public static final String PEAK_HEAP_USAGE_PER_TESTCASE = "testCase";
+    public static final String PEAK_HEAP_USAGE = "japex.peakHeapUsage";
+
+
     /**
      * If set to true, japex simply uses the thread context class loader for all drivers.
      * This is intended for environments where Japex is embedded.
@@ -105,9 +115,6 @@ public class Constants {
     public static final String RESULT_ARIT_MEAN_X_STDDEV = "japex.resultAritMeanXStddev";
     public static final String RESULT_GEOM_MEAN_X_STDDEV = "japex.resultGeomMeanXStddev";
     public static final String RESULT_HARM_MEAN_X_STDDEV = "japex.resultHarmMeanXStddev";
-    
-    public static final String PEAK_HEAP_USAGE = "japex.peakHeapUsage";
-    public static final String REPORT_PEAK_HEAP_USAGE = "japex.reportPeakHeapUsage";
     
     // Testcase input parameters
     public static final String RUN_ITERATIONS    = "japex.runIterations";

@@ -300,7 +300,8 @@ public class Engine {
                 forEachRun();
                 
                 // Set memory usage param and display info
-                if (_driverImpl.getBooleanParam(REPORT_PEAK_HEAP_USAGE)) {
+                if (_testSuite.getBooleanParam(REPORT_PEAK_HEAP_USAGE)
+                        && PEAK_HEAP_USAGE_PER_DRIVER.equals(getHeapResetContext())) {
                     setPeakMemoryUsage(_driverImpl);
                     outputWriter.println("    Peak heap usage: "
                         + _driverImpl.getParam(PEAK_HEAP_USAGE)
@@ -435,6 +436,11 @@ public class Engine {
             while (tci.hasNext()) {
                 TestCaseImpl tc = tci.next();
                 
+				if (PEAK_HEAP_USAGE_PER_TESTCASE.equals(getHeapResetContext())) {
+                    // Reset memory usage before starting runs
+                    resetPeakMemoryUsage();
+                }
+				
                 if (Japex.verbose) {
                     outputWriter.println(tc.getName());
                 } 
@@ -577,6 +583,12 @@ public class Engine {
                             futures[i].cancel(true);
                         }
                     }
+					
+					if (_testSuite.getBooleanParam(REPORT_PEAK_HEAP_USAGE)
+                            && PEAK_HEAP_USAGE_PER_TESTCASE.equals(getHeapResetContext())) {
+                        setPeakMemoryUsage(tc);
+                        outputWriter.println("    Peak heap usage: " + tc.getParam(PEAK_HEAP_USAGE) + " KB");
+                    }
                 }
                 
                 double result;
@@ -640,7 +652,7 @@ public class Engine {
         }
     }
     
-    private void setPeakMemoryUsage(DriverImpl driver) {
+    private void setPeakMemoryUsage(ParamsImpl params) {
         long afterHeapMemoryUsage = 0L;
         
         // Accumulate usage from all heap-type pools
@@ -651,8 +663,17 @@ public class Engine {
         }
 
         // Set output parameter
-        driver.setDoubleParam(PEAK_HEAP_USAGE,
+        params.setDoubleParam(PEAK_HEAP_USAGE,
                 (afterHeapMemoryUsage - _beforeHeapMemoryUsage) / 1024.0);
+    }
+	
+	private String getHeapResetContext()
+    {
+        String resetContext = _testSuite.getParam(PEAK_HEAP_USAGE_RESET_CONTEXT);
+        if (resetContext == null) {
+            resetContext = PEAK_HEAP_USAGE_PER_DRIVER;
+        }
+        return resetContext;
     }
     
     private List<Long> getGCAbsoluteTimes() {
@@ -723,6 +744,9 @@ public class Engine {
         else if (resultUnit.equalsIgnoreCase("%GCTIME")) {
             // Calculate % of GC relative to the run time
             return (_gCTime / actualTime) * 100.0;
+        }
+		else if (resultUnit.equalsIgnoreCase(RESULT_UNIT_HEAP)) {
+            return tc.getDoubleParam(PEAK_HEAP_USAGE);
         }
         else {
             throw new JapexException("Unknown value '" + 
